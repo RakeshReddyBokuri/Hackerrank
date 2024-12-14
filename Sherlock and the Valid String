@@ -1,0 +1,53 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'isValid' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def isValid(s):
+    d=dict()
+    v=0
+    l=set(s)
+    for i in l:
+        if s.count(i) not in d.values():
+            v+=1
+        d[i]=s.count(i)
+    if v>2:
+        return "NO"
+    if v==1:
+        return "YES"
+    v=list(d.values())
+    l=list(set(v))
+    p=[v.count(l[0])>1,v.count(l[1])>1]
+    if p[0] and p[1]:
+        return "NO"
+    mi=min(p[0],p[1])
+    ma=max(p[0],p[1])
+    mi=p.index(mi)
+    ma=p.index(ma)
+    if l[mi]-1==l[ma] or l[mi]==1:
+        return "YES"
+    print(d)    
+    return "NO"
+    
+    # Write your code here
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = isValid(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
