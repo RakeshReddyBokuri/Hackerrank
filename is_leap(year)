@@ -1,0 +1,14 @@
+def is_leap(year):
+    leap = False
+    if(year%4==0 ):
+        if(int(str(year)[:2])%2==1 and int(str(year)[2:])==0):
+            return leap
+        return True
+    return leap
+    
+    # Write your logic here
+    
+    return leap
+
+year = int(input())
+print(is_leap(year))
