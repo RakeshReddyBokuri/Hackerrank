@@ -1,0 +1,24 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+l=[]
+def en(e):
+    l.append(e)
+def de():
+    if l==[]:
+        return
+    l.pop(0)
+def Print():
+    if l==[]:
+        print(None)
+        return
+    print(l[0])
+n=int(input())
+for i in range(n):
+    k=input()
+    if " " in k:
+        en(int(k[2:]))
+    elif k=="2":
+        de()
+    elif k=="3":
+        Print()
+    else:
+        print("Invalid")
