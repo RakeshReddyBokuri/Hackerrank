@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'waiter' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY number
+#  2. INTEGER q
+#
+
+def get_primes(n):
+    a = [True] * n
+    for i in range(3, int(n**0.5)+1, 2):
+        if a[i]:
+            a[i**2::i*2] = [False] * int(((n-i**2-1)/(i*2)+1))
+    return [2] + [i for i in range(3, n, 2) if a[i]]
+
+def waiter(number, q):
+    result, primes = [], get_primes(9734)
+    for i in range(q + 1):
+        b = number if i == q else [number.pop(j) for j in range(len(number) - 1, -1, -1) if number[j] % primes[i] == 0]
+        result += b if i % 2 else b[::-1]
+    return result
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    first_multiple_input = input().rstrip().split()
+
+    n = int(first_multiple_input[0])
+
+    q = int(first_multiple_input[1])
+
+    number = list(map(int, input().rstrip().split()))
+
+    result = waiter(number, q)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
