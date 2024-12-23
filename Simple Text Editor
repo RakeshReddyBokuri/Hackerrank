@@ -1,0 +1,23 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+l=[""]
+def app(e):
+    l.append(l[-1]+e)
+def dele(c):
+    l.append(l[-1][:-c])
+def undo():
+    l.pop()
+def Print(c):
+    print(l[-1][c-1])
+n=int(input())
+for i in range(n):
+    k=input()
+    k,v=k[0],k[2:]
+    if k=="1":
+        app(v)
+    elif k=="2":
+        dele(int(v))
+    elif k=="3":
+        Print(int(v))
+    elif k=="4":
+        undo()
+        
