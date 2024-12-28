@@ -1,0 +1,13 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+from heapq import heappush, heappop
+
+h, p = [], set()
+for s in [input().split(' ') for _ in range(int(input()))]:
+    if s[0] == '1':
+        p.add(int(s[1])), heappush(h, int(s[1]))
+    elif s[0] == '2':
+        p.discard(int(s[1]))
+    elif s[0] == '3':
+        while h[0] not in p:
+            heappop(h)
+        print(h[0])
