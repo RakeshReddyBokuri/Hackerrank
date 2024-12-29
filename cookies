@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'cookies' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts following parameters:
+#  1. INTEGER k
+#  2. INTEGER_ARRAY A
+#
+import heapq
+
+def cookies(k, A):
+    heapq.heapify(A)
+    c = 0
+
+    while len(A) > 1 and A[0] < k:
+        smallest = heapq.heappop(A)
+        second_smallest = heapq.heappop(A)
+        new_cookie = smallest + 2 * second_smallest
+        heapq.heappush(A, new_cookie)
+        c += 1
+    return c if A[0] >= k else -1
+
+    # Write your code here
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    first_multiple_input = input().rstrip().split()
+
+    n = int(first_multiple_input[0])
+
+    k = int(first_multiple_input[1])
+
+    A = list(map(int, input().rstrip().split()))
+
+    result = cookies(k, A)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
