@@ -1,0 +1,14 @@
+def count_substring(string, sub_string):
+    s=string
+    su=0
+    while sub_string in s:
+        su+=1
+        s=s[s.index(sub_string)+1:]
+    return su
+
+if __name__ == '__main__':
+    string = input().strip()
+    sub_string = input().strip()
+    
+    count = count_substring(string, sub_string)
+    print(count)
